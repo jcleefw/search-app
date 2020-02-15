@@ -1,4 +1,4 @@
-const express = require("express")
+const express = require('express')
 var app = express()
 
 const searchResults = require('./data.json')

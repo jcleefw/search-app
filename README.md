@@ -13,9 +13,6 @@ Client app will be running at http:localhost:3000
 `yarn express` or `npm express`
 Server app will be running at http:localhost:5000
 
-## How to run test 
+## How to run test
 
 `yarn test`
-
-
-
