@@ -3,18 +3,14 @@ import './App.scss'
 
 import SearchPage from './Search/SearchPage'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const Home = () => {
   return (
     <div>
       <h2>Home</h2>
     </div>
-  );
+  )
 }
 
 const App = () => {
