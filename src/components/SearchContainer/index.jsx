@@ -21,7 +21,7 @@ const renderSearchPage = props => {
     return (
       <SearchList
         searchResults={searchResults.results}
-        searchQuery="Sydney"
+        searchQuery={searchInputEl.current.value}
         setSearchResults={setSearchResults}
       />
     )
