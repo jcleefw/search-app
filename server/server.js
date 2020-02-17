@@ -1,9 +1,13 @@
 const express = require('express')
+var cors = require('cors')
+
 var app = express()
+
+app.use(cors())
 
 const searchResults = require('./data.json')
 
-app.set('port', process.env.PORT || 8080)
+app.set('port', process.env.PORT || 5000)
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
