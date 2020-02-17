@@ -23,7 +23,9 @@ Client app will be running at http:localhost:3000
 - [x] split fetch into a utils/api and write test for it
 - [x] create basic container with conditional render of pages(Form, search result & Error Page)
 - [x] display all details required in search item
+
 - [ ] sorting function
+- [ ] reset form
 - [ ] star ratings
 - [x] proper styling
 
