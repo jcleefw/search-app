@@ -4,10 +4,9 @@
   display: grid;
   width: 100%;
   padding: 2rem 0;
-  grid-template-columns: 200px minmax(auto, 2fr);
+  grid-template-columns: 200px auto;
   grid-gap: 20px;
 }
-
 
 .itemFigure {
   height: 150px;
@@ -32,7 +31,7 @@
 
 .searchItem__information {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   border-bottom: 1px solid lighten($black, 70%);
 }
 
@@ -40,13 +39,19 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 
   .propertyName {
     font-size: 22px;
-    font-weight: 600px;
+    font-weight: 500;
     color: $black;
     line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media screen and (max-width: 900px) {
+      width: 300px;
+    }
   }
 
   .propertyAddress {
@@ -85,7 +90,7 @@
 
   .pricePerNight {
     font-size: 36px;
-    font-weight: 500px;
+    font-weight: 500;
     color: $black;
     margin-bottom: 8px;
     position: relative;

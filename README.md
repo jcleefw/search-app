@@ -29,15 +29,20 @@ Client app will be running at http:localhost:3000
 - [ ] Star ratings
 - [x] proper styling
 - [ ] reset form
-
+- [x] make page responsive 
 
 ## Trade Off
+
 Due to time limitation time, below are a few things that have been trade off or partially implemented.
 
-- star ratings 
-- lazy loading of image
-- ways to reset form without having to refresh
-- responsive page
-- Writing test SearchContainer, the sorting of list by or Price sort
-- some refactoring on SearchItem 
-- proper error handling with status code if server is not connected.
+- the only accepted input for the search is `sydney`. The results is hard coded to only return results with the input.
+- most cases it this app handles happy cases assuming that data has been serialized.
+- Didn't have enough time to do the `Star ratings` function.
+- Better handling for lazy loading of image
+- Should implement a way to refresh the form without having to refresh the page.
+- Writing test SearchContainer, the sorting of list by for Price sort when comes to dealing with the hooks and state change
+- Setup PropTypes for the React component
+- SearchItem can be refactored to smaller components.
+- Proper error handling with status code if server is not connected.
+
+
