@@ -12,9 +12,9 @@ const SearchList = ({ searchResults, searchQuery }) => {
       </div>
 
       {!isEmptyList &&
-        searchResults.map((item, index) =>
+        searchResults.map((item, index) => (
           <SearchItem key={index} details={item} />
-        )}
+        ))}
     </div>
   )
 }
