@@ -1,0 +1,44 @@
+$qantas-red: #d10000;
+$black: #333;
+$buff: #f4f4f4;
+$white: #ffffff;
+
+.searchContainer {
+  height: 80vh;
+  display: grid;
+  width: 100%;
+}
+
+.formField {
+  margin-top: 5rem;
+  display: inline-flex;
+  input {
+    height: 3rem;
+    width: 400px;
+    padding: 1rem 0.5rem;
+    &:focus {
+      outline: none;
+      border: 1px solid lighten($black, 50%);
+    }
+  }
+
+  .button {
+    height: 3rem;
+    background-color: $qantas-red;
+    color: $white;
+    border: none;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.searchList {
+  display: grid;
+  width: 100%;
+}
+

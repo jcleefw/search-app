@@ -1,5 +1,5 @@
 import React from 'react'
-import './search-page-styles.scss'
+import './search-item.scss'
 
 const SearchItem = ({ index, details }) => {
   return (
