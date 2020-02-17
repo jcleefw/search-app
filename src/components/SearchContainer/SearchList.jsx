@@ -6,7 +6,7 @@ import { sortByPrice } from '../../utils/tools'
 const SortSelect = ({ setSortOrder }) => {
   return (
     <form id="sortBy">
-      <select
+      <select className="sortSelect"
         onChange={e => setSortOrder(e.target.value)}
         defaultValue="high-to-low"
       >
@@ -30,12 +30,16 @@ const SearchList = ({ searchResults, searchQuery }) => {
 
   return (
     <div className="searchList" data-testid="searchList">
-      <div className="searchSummary">
-        <span className="resultsLength">{searchResults.length}</span> hotels in
-        <span className="searchQuery"> {searchQuery}</span>
+
+      <div className="searchInfo">
+        <div className="searchSummary">
+          <span className="resultsLength">{searchResults.length}</span> hotels in
+          <span className="searchQuery"> {searchQuery}</span>
+        </div>
+
+        {!isEmptyList && <SortSelect setSortOrder={setSortOrder} />}
       </div>
 
-      {!isEmptyList && <SortSelect setSortOrder={setSortOrder} />}
 
       {!isEmptyList &&
         sortSearchResult.map((item, index) => (

@@ -55,12 +55,14 @@ const SearchItem = ({ index, details }) => {
         details.property.previewImage,
         details.offer.promotion.title
       )}
-      {renderItemDetails(
-        details.property,
-        details.offer.name,
-        details.offer.cancellationOption.cancellationType
-      )}
-      {renderItemPrice(details.offer)}
+      <div className="searchItem__information">
+        {renderItemDetails(
+          details.property,
+          details.offer.name,
+          details.offer.cancellationOption.cancellationType
+        )}
+        {renderItemPrice(details.offer)}
+      </div>
     </article>
   )
 }
