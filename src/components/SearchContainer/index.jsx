@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from 'react'
-
-const renderError = hasErrors => {
-  return (
-    <div>
-      <h2>Opps there's an Error</h2>
-    </div>
-  )
-}
+import ErrorPage from '../ErrorPage'
 
 const renderResults = searchResults => {
   return <div>{searchResults.length}</div>
 }
 
 const renderSearchPage = (searchResults, hasErrors) => {
-  if (hasErrors === {}) {
-    return renderError(hasErrors)
+  if (hasErrors.err) {
+    return <ErrorPage errors={hasErrors.err} />
   } else {
     return renderResults(searchResults)
   }
 }
 
-const SearchPage = () => {
+const SearchContainer = () => {
   const [searchResults, setSearchResults] = useState({})
   const [hasErrors, setErrors] = useState({})
 
@@ -36,9 +29,8 @@ const SearchPage = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  console.log(hasErrors)
 
   return renderSearchPage(searchResults, hasErrors)
 }
 
-export default SearchPage
+export default SearchContainer

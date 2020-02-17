@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchPage from './Search/SearchPage'
+import SearchContainer from './components/SearchContainer'
 import Header from './components/Header'
 import './App.scss'
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <SearchPage />
+      <SearchContainer />
     </div>
   )
 }

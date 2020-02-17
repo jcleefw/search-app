@@ -1,8 +1,8 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import App from './App'
 
 test('renders learn react link', () => {
-  const wrapper = shallow(<App />)
-  expect(wrapper.find('header')).toHaveLength(1)
+  const wrapper = mount(<App />)
+  expect(wrapper.find('.header')).toHaveLength(1)
 })
