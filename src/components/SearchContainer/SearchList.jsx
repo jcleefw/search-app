@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import SearchItem from '../SearchItem'
 import './search-page-styles.scss'
+import { sortByPrice } from '../../utils/tools'
 
 const SortSelect = ({ setSortOrder }) => {
-  return <form id="sortBy">
-    <select
-      onChange={e => setSortOrder(e.target.value)}
-      defaultValue="high-to-low"
-    >
-      <option value="desc">Price high-low</option>
-      <option value="asc">Price low-high</option>
-    </select>
-  </form>
+  return (
+    <form id="sortBy">
+      <select
+        onChange={e => setSortOrder(e.target.value)}
+        defaultValue="high-to-low"
+      >
+        <option value="desc">Price high-low</option>
+        <option value="asc">Price low-high</option>
+      </select>
+    </form>
+  )
 }
 
 const SearchList = ({ searchResults, searchQuery }) => {
   const isEmptyList = searchResults.length > 0 ? false : true
   const [sortOrder, setSortOrder] = useState('desc')
+  const [sortSearchResult, setSortSearchResults] = useState(
+    searchResults.sort(sortByPrice(sortOrder))
+  )
 
   useEffect(() => {
-    console.log(sortOrder)
+    setSortSearchResults(searchResults.sort(sortByPrice(sortOrder)))
   }, [sortOrder])
 
   return (
@@ -29,12 +35,10 @@ const SearchList = ({ searchResults, searchQuery }) => {
         <span className="searchQuery"> {searchQuery}</span>
       </div>
 
-      {!isEmptyList && (
-        <SortSelect setSortOrder={setSortOrder} />
-      )}
+      {!isEmptyList && <SortSelect setSortOrder={setSortOrder} />}
 
       {!isEmptyList &&
-        searchResults.map((item, index) => (
+        sortSearchResult.map((item, index) => (
           <SearchItem key={index} details={item} />
         ))}
     </div>
