@@ -1,28 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { fetchData } from '../../utils/api'
 import SearchList from './SearchList'
+import SearchForm from './SearchForm'
 import ErrorPage from '../ErrorPage'
+
 import './search-page-styles.scss'
 
-const SearchForm = ({ setSearchResults, setErrors }) => (
-  <div className="formField">
-    <form id="searchForm">
-      <input id="searchInput" />
-    </form>
-    <button
-      className="button"
-      onClick={() => {
-        const query = document.getElementById('searchInput').value
-        return searchFunction(query, setSearchResults, setErrors)
-      }}
-    >
-      Search
-    </button>
-  </div>
-)
-
 const renderSearchPage = props => {
-  let { searchResults, hasErrors, setSearchResults, setErrors } = props
+  let {
+    searchResults,
+    hasErrors,
+    setSearchResults,
+    setErrors,
+    searchInputEl,
+  } = props
+
   if (hasErrors.err) {
     return <ErrorPage errors={hasErrors.err} />
   } else if (searchResults && searchResults.results) {
@@ -35,7 +27,12 @@ const renderSearchPage = props => {
     )
   } else
     return (
-      <SearchForm setSearchResults={setSearchResults} setErrors={setErrors} />
+      <SearchForm
+        setSearchResults={setSearchResults}
+        setErrors={setErrors}
+        searchInputEl={searchInputEl}
+        searchFunction={searchFunction}
+      />
     )
 }
 
@@ -50,6 +47,7 @@ const searchFunction = (query, setSearchResults, setErrors) => {
 const SearchContainer = () => {
   const [searchResults, setSearchResults] = useState({})
   const [hasErrors, setErrors] = useState({})
+  const searchInputEl = useRef()
 
   return (
     <div className="container searchContainer">
@@ -58,6 +56,7 @@ const SearchContainer = () => {
         hasErrors,
         setSearchResults,
         setErrors,
+        searchInputEl,
       })}
     </div>
   )
