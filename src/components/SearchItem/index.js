@@ -41,7 +41,9 @@ const renderItemPrice = propertyOffer => {
         {propertyOffer.displayPrice.currency.toUpperCase()}
       </p>
       <div className="pricePerNight">{propertyOffer.displayPrice.amount}</div>
-      {propertySavings && <div className="savings">Save ${propertySavings}</div>}
+      {propertySavings && (
+        <div className="savings">Save ${propertySavings}</div>
+      )}
     </div>
   )
 }

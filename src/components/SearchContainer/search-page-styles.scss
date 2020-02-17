@@ -39,11 +39,12 @@
   width: 100%;
 }
 
-.searchSummary{
+.searchSummary {
   font-size: 1rem;
   font-style: italic;
 
-  .resultsLength, .searchQuery {
+  .resultsLength,
+  .searchQuery {
     font-weight: 600;
     font-style: normal;
   }

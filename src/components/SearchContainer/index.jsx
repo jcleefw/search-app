@@ -37,7 +37,7 @@ const renderSearchPage = props => {
 }
 
 const searchFunction = (query, setSearchResults, setErrors) => {
-  if (query !== 'sydney') {
+  if (query.toLowerCase() !== 'sydney') {
     setSearchResults({ results: [] })
   } else {
     fetchData('/search_results', setSearchResults, setErrors)
