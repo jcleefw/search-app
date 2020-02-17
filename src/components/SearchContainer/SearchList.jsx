@@ -11,7 +11,7 @@ const SearchList = ({ searchResults, searchQuery }) => {
         <span className="resultsLength">
           {searchResults.length}
         </span> hotels in
-        <span className="searchQuery">{searchQuery}</span>
+        <span className="searchQuery"> {searchQuery}</span>
       </div>
 
       {!isEmptyList &&
