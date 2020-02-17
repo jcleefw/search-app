@@ -20,12 +20,15 @@ Client app will be running at http:localhost:3000
 ## TODO Stories
 
 - [x] create express server
-- [ ] split fetch into a utils/api and write test for it
-- [ ] include sass-loader
-- [ ] create basic container with conditional render of pages(Form, search result & Error Page)
-- [ ] display all details required in search item
+- [x] split fetch into a utils/api and write test for it
+- [x] create basic container with conditional render of pages(Form, search result & Error Page)
+- [x] display all details required in search item
 - [ ] sorting function
 - [ ] star ratings
-- [ ] proper styling
+- [x] proper styling
 
 ## Trade Off
+- lazy loading of image
+- ways to reset form without having to refresh
+- responsive page
+- writing test SearchContainer and the react hooks
