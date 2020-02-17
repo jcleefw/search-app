@@ -38,3 +38,13 @@
   display: grid;
   width: 100%;
 }
+
+.searchSummary{
+  font-size: 1rem;
+  font-style: italic;
+
+  .resultsLength, .searchQuery {
+    font-weight: 600;
+    font-style: normal;
+  }
+}

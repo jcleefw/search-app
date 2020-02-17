@@ -7,8 +7,11 @@ const SearchList = ({ searchResults, searchQuery }) => {
 
   return (
     <div className="searchList" data-testid="searchList">
-      <div>
-        {searchResults.length} hotels in {searchQuery}
+      <div className="searchSummary">
+        <span className="resultsLength">
+          {searchResults.length}
+        </span> hotels in
+        <span className="searchQuery">{searchQuery}</span>
       </div>
 
       {!isEmptyList &&
