@@ -4,8 +4,8 @@ import './search-item.scss'
 const renderItemImage = (imgDetails, promotionTitle) => {
   return (
     <figure className="itemFigure">
-      <img src={imgDetails.url} alt={imgDetails.caption} />
-      <span>{promotionTitle}</span>
+      <img loading="lazy" src={imgDetails.url} alt={imgDetails.caption} />
+      <span className="promotionTitle">{promotionTitle}</span>
     </figure>
   )
 }
@@ -15,11 +15,14 @@ const renderItemDetails = (propertyDetails, offerName, cancellationType) => {
     cancellationType === 'FREE_CANCELLATION' ? true : false
   return (
     <div className="propertyDetails">
-      <h4 className="propertyName">{propertyDetails.title}</h4>
-      <p className="propertyAddress">{propertyDetails.address.join()}</p>
-      <p className="propertyType">
-        <a href="#">{offerName}</a>
-      </p>
+      <div className="propertyDetailsStatics">
+        <h4 className="propertyName">{propertyDetails.title}</h4>
+        <p className="propertyAddress">{propertyDetails.address.join()}</p>
+        <p className="propertyType">
+          <a href="#">{offerName}</a>
+        </p>
+      </div>
+
       {freeCancellation && (
         <p className="freeCancellation">Free Cancellation</p>
       )}

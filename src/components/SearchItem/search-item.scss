@@ -1,6 +1,59 @@
+@import '../../variables.scss';
+
 .searchItem {
   display: grid;
   width: 100%;
   padding: 2rem 0;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 200px minmax(auto, 2fr) 1fr;
+  grid-gap: 20px;
+}
+
+.itemFigure {
+  height: 150px;
+  width: 200px;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .promotionTitle {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background: $white;
+    color: $qantas-red;
+    padding: 10px;
+    font-weight: 700;
+  }
+}
+
+.propertyDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .propertyName {
+    font-size: 22px;
+    font-weight: 600px;
+    color: $black;
+    line-height: 30px;
+  }
+
+  .propertyAddress {
+    font-size: 14px;
+    color: lighten($black, 50%);
+  }
+
+  .propertyType {
+    a {
+      color: $qantas-red;
+    }
+    font-size: 1rem;
+    margin-top: 40px;
+  }
+
+  .freeCancellation {
+    color: $green;
+  }
 }
