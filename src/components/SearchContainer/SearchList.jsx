@@ -18,7 +18,7 @@ const SortSelect = ({ setSortOrder }) => {
   )
 }
 
-const SearchList = ({ searchResults, searchQuery }) => {
+const SearchList = ({ searchResults, searchQuery, setSearchResults }) => {
   const isEmptyList = searchResults.length > 0 ? false : true
   const [sortOrder, setSortOrder] = useState('desc')
   const [sortSearchResult, setSortSearchResults] = useState(
@@ -36,8 +36,8 @@ const SearchList = ({ searchResults, searchQuery }) => {
           <span className="resultsLength">{searchResults.length}</span> hotels
           in
           <span className="searchQuery"> {searchQuery}</span>
+          <span className="resetForm" onClick={() => setSearchResults([])}>Reset Form</span>
         </div>
-
         {!isEmptyList && <SortSelect setSortOrder={setSortOrder} />}
       </div>
 
