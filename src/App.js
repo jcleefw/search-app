@@ -1,11 +1,12 @@
 import React from 'react'
-import logo from './logo.svg'
 import SearchPage from './Search/SearchPage'
+import Header from './components/Header'
 import './App.scss'
 
 function App() {
   return (
     <div className="App">
+      <Header />
       <SearchPage />
     </div>
   )
