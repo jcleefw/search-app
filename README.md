@@ -16,3 +16,18 @@ Client app will be running at http:localhost:3000
 ## How to run test
 
 `yarn test`
+
+## TODO Stories
+
+- [x] create express server
+- [ ] create fetch from api & api test
+- [ ] include sass-loader
+- [ ] create basic container with conditional render of pages(Form, search result & Error Page)
+- [ ] display all details required in search item
+- [ ] sorting function
+- [ ] star ratings
+- [ ] proper styling
+
+
+## Trade Off
+
