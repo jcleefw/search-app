@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import ErrorPage from '../ErrorPage'
-
-const renderResults = searchResults => {
-  return <div>{searchResults.length}</div>
-}
+import SearchList from './SearchList'
 
 const renderSearchPage = (searchResults, hasErrors) => {
   if (hasErrors.err) {
     return <ErrorPage errors={hasErrors.err} />
   } else {
-    return renderResults(searchResults)
+    return <SearchList searchResults={searchResults} searchQuery="sydney" />
   }
 }
 

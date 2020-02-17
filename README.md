@@ -20,7 +20,7 @@ Client app will be running at http:localhost:3000
 ## TODO Stories
 
 - [x] create express server
-- [ ] create fetch from api & api test
+- [ ] split fetch into a utils/api and write test for it
 - [ ] include sass-loader
 - [ ] create basic container with conditional render of pages(Form, search result & Error Page)
 - [ ] display all details required in search item
@@ -28,6 +28,4 @@ Client app will be running at http:localhost:3000
 - [ ] star ratings
 - [ ] proper styling
 
-
 ## Trade Off
-
