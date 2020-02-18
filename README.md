@@ -30,11 +30,13 @@ Client app will be running at http:localhost:3000
 - [x] proper styling
 - [x] reset form
 - [x] make page responsive 
+- [ ] create store, actions and reducers to handle states better
 
 ## Trade Off
 
 Due to time limitation time, below are a few things that have been trade off or partially implemented.
 
+- I originally think store and reducers might be a bit of a overkill. However, towards the end of my development I realised, there's a need to use `actions` and `reducer` to handle the state better. If given time to improve I will implement useReducers to handle `searchResults` set and updates better. I can also use a move the action of sorting the `searchList` to the reducer. 
 - the only accepted input for the search is `sydney`. The results is hard coded to only return results with the input.
 - most cases it this app handles happy cases assuming that data has been serialized.
 - Didn't have enough time to do the `Star ratings` function.
