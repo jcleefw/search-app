@@ -1,0 +1,64 @@
+@import '../../variables';
+
+.searchContainer {
+  height: 80vh;
+  display: grid;
+  width: 100%;
+}
+
+.formField {
+  margin-top: 5rem;
+  display: inline-flex;
+  input {
+    height: 3rem;
+    width: 400px;
+    padding: 1rem 0.5rem;
+    &:focus {
+      outline: none;
+      border: 1px solid lighten($black, 50%);
+    }
+  }
+
+  .button {
+    height: 3rem;
+    background-color: $qantas-red;
+    color: $white;
+    border: none;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.searchList {
+  display: grid;
+  width: 100%;
+}
+
+.searchSummary {
+  font-size: 1rem;
+  font-style: italic;
+
+  .resultsLength,
+  .searchQuery {
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .resetForm {
+    padding-left: 2rem;
+    font-style: normal;
+    text-decoration: underline;
+    color: $qantas-red;
+  }
+}
+
+.searchInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
