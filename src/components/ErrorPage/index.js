@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-const ErrorPage = ({ errors }) => {
+const ErrorPage = ({ searchContext }) => {
+  const { store } = useContext(searchContext)
   return (
     <div>
       <h2>Opps there's an Error</h2>
-      <p>{errors.err}</p>
+      <p>{store.searchErrors}</p>
     </div>
   )
 }

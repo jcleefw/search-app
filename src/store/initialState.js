@@ -1,6 +1,6 @@
 const initialState = {
   searchResults: [],
-  searchErrors: {},
+  searchErrors: '',
   emptyResults: false,
 }
 

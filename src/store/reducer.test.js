@@ -1,12 +1,11 @@
 import reducer from './reducer'
+import initialState from './initialState'
 
 describe('reducer', () => {
-  let searchResults = []
-
   describe('SET_SEARCH_RESULTS', () => {
     let expectedResults = {
       searchResults: [1, 2, 3],
-      searchErrors: {},
+      searchErrors: '',
       emptyResults: false,
     }
 
@@ -23,7 +22,7 @@ describe('reducer', () => {
   describe('UPDATE_SEARCH_RESULTS', () => {
     let expectedResults = {
       searchResults: [1, 2, 3],
-      searchErrors: {},
+      searchErrors: '',
       emptyResults: 'blah',
     }
 

@@ -60,18 +60,14 @@ describe('api', () => {
 
   it('fetchData failed', async () => {
     let mockData = {
-      status: 404,
-      statusText: 'Not Found',
+      message: 'not found',
     }
     let expectedResults = {
-      searchErrors: { status: 404, statusText: 'Not Found' },
+      searchErrors: 'not found',
       type: 'SET_SEARCH_ERRORS',
     }
 
-    mockFetch = jest
-      .spyOn(global, 'fetch')
-      .mockResolvedValueOnce(mockData)
-      .mockRejectedValue(mockData)
+    mockFetch = jest.spyOn(global, 'fetch').mockRejectedValue(mockData)
 
     let data = await Api.fetchData('/blach', reducer)
     expect(mockFetch).toHaveBeenCalledTimes(1)

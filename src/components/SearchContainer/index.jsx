@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from 'react'
 import { fetchData } from '../../utils/api'
 // import SearchList from './SearchList'
 import SearchForm from './SearchForm'
-import ErrorPage from '../ErrorPage'
+// import ErrorPage from '../ErrorPage'
 import initialState from '../../store/initialState'
 import reducer from '../../store/reducer'
 
@@ -24,6 +24,7 @@ const ResetButton = () => {
         dispatch({
           type: 'SET_SEARCH_RESULTS',
           searchResults: [],
+          searchErrors: '',
         })
       }
     >
@@ -39,8 +40,34 @@ const EmptyList = () => {
 const searchFunction = (query, dispatch) => {
   if (query.toLowerCase() !== 'sydney')
     return dispatch({ type: 'SET_SEARCH_RESULTS', emptyResults: true })
-  // return null
   else return fetchData('/search_results', dispatch, 'SET_SEARCH_RESULTS')
+}
+
+const ErrorPage = ({ searchContext }) => {
+  const { store } = useContext(SearchContext)
+  return (
+    <div>
+      <h2>Opps there's an Error</h2>
+      <p>{store.searchErrors}</p>
+    </div>
+  )
+}
+
+const SearchPage = ({ searchContext }) => {
+  const { store } = useContext(searchContext)
+
+  if (store.searchErrors.length > 0) {
+    return <ErrorPage searchContext={SearchContext} />
+  } else if (!store.emptyResults && store.searchResults.length > 0) {
+    return <SearchList />
+  } else {
+    return (
+      <SearchForm
+        searchContext={SearchContext}
+        searchFunction={searchFunction}
+      />
+    )
+  }
 }
 
 const SearchContainer = () => {
@@ -48,7 +75,8 @@ const SearchContainer = () => {
 
   return (
     <SearchContext.Provider value={{ store, dispatch }}>
-      {store.emptyResults && <EmptyList />}
+      <SearchPage searchContext={SearchContext} />
+      {/* {store.emptyResults && <EmptyList />}
       {!store.emptyResults && store.searchResults.length > 0 && <SearchList />}
       {(store.emptyResults || store.searchResults.length > 0) && (
         <ResetButton />
@@ -58,7 +86,7 @@ const SearchContainer = () => {
           searchContext={SearchContext}
           searchFunction={searchFunction}
         />
-      )}
+      )} */}
     </SearchContext.Provider>
   )
 }
