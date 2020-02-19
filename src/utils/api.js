@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:5000'
 
-export const fetchData = (url, setSuccess, setErrors) => {
+export async function fetchData(url, dispatch, dispatchType) {
   let errorMessage = {}
   return fetch(`${BASE_URL}${url}`)
     .then(response => {
@@ -14,6 +14,21 @@ export const fetchData = (url, setSuccess, setErrors) => {
       return response
     })
     .then(res => res.json())
-    .then(data => setSuccess(data))
-    .catch(err => setErrors({ err: errorMessage }))
+    .then(data => {
+      if (data.results.length > 0)
+        return dispatch({
+          type: dispatchType,
+          searchResults: data.results,
+          emptyResults: false,
+        })
+      else
+        return dispatch({
+          type: dispatchType,
+          emptyResults: true,
+          searchResults: [],
+        })
+    })
+    .catch(err =>
+      dispatch({ type: 'SET_SEARCH_ERRORS', searchErrors: errorMessage })
+    )
 }
