@@ -1,6 +1,6 @@
 import React, { useReducer, useContext } from 'react'
 import { fetchData } from '../../utils/api'
-// import SearchList from './SearchList'
+import SearchList from './SearchList'
 import SearchForm from './SearchForm'
 import ErrorPage from '../ErrorPage'
 import ResetButton from '../ResetButton'
@@ -10,16 +10,6 @@ import reducer from '../../store/reducer'
 import './search-page-styles.scss'
 
 const SearchContext = React.createContext(null)
-
-const SearchList = ({ searchContext }) => {
-  const { store } = useContext(SearchContext)
-  return (
-    <React.Fragment>
-      {store.searchResults.length}
-      <ResetButton searchContext={searchContext} />
-    </React.Fragment>
-  )
-}
 
 const EmptyList = ({ searchContext }) => {
   return (
@@ -44,7 +34,7 @@ const SearchPage = ({ searchContext }) => {
   } else if (store.emptyResults) {
     return <EmptyList />
   } else if (!store.emptyResults && store.searchResults.length > 0) {
-    return <SearchList searchContext={SearchContext} />
+    return <SearchList searchContext={SearchContext} searchQuery="sydney" />
   } else {
     return (
       <SearchForm

@@ -15,7 +15,7 @@ describe('reducer', () => {
       emptyResults: false,
     }
     it('sets search results', () => {
-      expect(reducer('SET_SEARCH_RESULTS', action)).toEqual(expectedResults)
+      expect(reducer(initialState, action)).toEqual(expectedResults)
     })
   })
 
@@ -33,15 +33,15 @@ describe('reducer', () => {
     }
 
     it('updates the value', () => {
-      expect(reducer('UPDATE_SEARCH_RESULTS', action)).toEqual(expectedResults)
+      expect(reducer(initialState, action)).toEqual(expectedResults)
     })
   })
 
   describe('SET_SEARCH_ERRORS', () => {
     let expectedResults = {
-      searchResults: undefined,
+      searchResults: [],
       searchErrors: 'i have errors',
-      emptyResults: undefined,
+      emptyResults: false,
     }
 
     const action = {
@@ -52,7 +52,23 @@ describe('reducer', () => {
     }
 
     it('updates only update the set errors values', () => {
-      expect(reducer('SET_SEARCH_ERRORS', action)).toEqual(expectedResults)
+      expect(reducer(initialState, action)).toEqual(expectedResults)
+    })
+  })
+
+  describe('SET_SORT_ORDER', () => {
+    let expectedResults = {
+      ...initialState,
+      sortOrder: 'desc',
+    }
+
+    const action = {
+      type: 'SET_SORT_ORDER',
+      sortOrder: 'desc',
+    }
+
+    it('updates only update the set errors values', () => {
+      expect(reducer(initialState, action)).toEqual(expectedResults)
     })
   })
 
@@ -64,7 +80,7 @@ describe('reducer', () => {
     }
 
     it('updates the value', () => {
-      expect(reducer('BLAH TYPE', action)).toEqual(initialState)
+      expect(reducer(initialState, action)).toEqual(initialState)
     })
   })
 })
