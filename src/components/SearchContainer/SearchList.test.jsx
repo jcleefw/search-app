@@ -2,11 +2,27 @@ import React from 'react'
 import SearchList from './SearchList'
 import { mount } from 'enzyme'
 import data from '../../../server/data.json'
+import SearchContext from './SearchContext'
 
 describe('SearchList', () => {
+
+  let dispatchStub = jest.fn()
+  const stubContext = {
+    dispatch: dispatchStub,
+    store: {},
+  }
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it('renders the SearchList has something', () => {
+    let stubStore = {searchResults: data.results}
+    
     const wrapper = mount(
-      <SearchList searchResults={data.results} searchQuery="Some location" />
+      <SearchContext.Provider value={{...stubContext, store: stubStore}}>
+        <SearchList searchQuery="Some location" />
+      </SearchContext.Provider>
     )
 
     expect(wrapper.find('.searchSummary').text()).toEqual(
@@ -17,9 +33,12 @@ describe('SearchList', () => {
   })
 
   it('renders when searchlist has nothing', () => {
-    let emptyData = { results: [] }
+    let emptyData = { searchResults: [] }
+
     const wrapper = mount(
-      <SearchList searchResults={emptyData.results} searchQuery="Some location" />
+      <SearchContext.Provider value={{...stubContext, store: emptyData}}>
+        <SearchList searchQuery="Some location" />
+      </SearchContext.Provider>
     )
 
     expect(wrapper.find('.searchSummary').text()).toEqual(
