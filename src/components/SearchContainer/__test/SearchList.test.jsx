@@ -1,8 +1,8 @@
 import React from 'react'
-import SearchList from './SearchList'
+import SearchList from '../SearchList'
 import { mount } from 'enzyme'
-import data from '../../../server/data.json'
-import SearchContext from './SearchContext'
+import data from '../../../../server/data.json'
+import SearchContext from '../SearchContext'
 
 describe('SearchList', () => {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import SearchForm from './SearchForm'
-import SearchContext from './SearchContext'
+import SearchForm from '../SearchForm'
+import SearchContext from '../SearchContext'
 
 describe('SearchForm', () => {
   const stubDispatch = jest.fn()
