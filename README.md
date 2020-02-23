@@ -32,6 +32,7 @@ Client app will be running at http:localhost:3000
 - [x] make page responsive
 - [x] create store, actions and reducers to handle states better
 - [x] write test for all components
+- [ ] Setup propTypes for Components
 
 ## Trade Off
 
