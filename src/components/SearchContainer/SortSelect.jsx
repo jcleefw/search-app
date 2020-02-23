@@ -9,8 +9,7 @@ const SortSelect = () => {
         className="sortSelect"
         onChange={e => {
           return dispatch({ type: 'SET_SORT_ORDER', sortOrder: e.target.value })
-        }
-        }
+        }}
         defaultValue={store.sortOrder}
       >
         <option value="desc">Price high-low</option>

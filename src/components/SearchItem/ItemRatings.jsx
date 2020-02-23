@@ -1,4 +1,5 @@
 import React from 'react'
+import { uid } from 'react-uid'
 
 const ICON_ENUM = {
   star: 'star',
@@ -12,19 +13,15 @@ const ICON_ENUM = {
 const renderIconComponent = (floorValue, ratingType) => {
   return Array.from(Array(floorValue), (_, i) => (
     <RatingIcon
-      index={i}
+      key={uid(i)}
       iconName={ICON_ENUM[ratingType]}
       ratingType={ratingType}
     />
   ))
 }
 
-const RatingIcon = ({ index, iconName, ratingType }) => {
-  return (
-    <i key={index} className={`material-icons ratings ${ratingType}`}>
-      {iconName}
-    </i>
-  )
+const RatingIcon = ({ iconName, ratingType }) => {
+  return <i className={`material-icons ratings ${ratingType}`}>{iconName}</i>
 }
 
 const Ratings = ({ rating }) => {

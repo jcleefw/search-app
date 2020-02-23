@@ -5,7 +5,6 @@ import data from '../../../../server/data.json'
 import SearchContext from '../SearchContext'
 
 describe('SearchList', () => {
-
   let dispatchStub = jest.fn()
   const stubContext = {
     dispatch: dispatchStub,
@@ -17,10 +16,10 @@ describe('SearchList', () => {
   })
 
   it('renders the SearchList has something', () => {
-    let stubStore = {searchResults: data.results}
-    
+    let stubStore = { searchResults: data.results }
+
     const wrapper = mount(
-      <SearchContext.Provider value={{...stubContext, store: stubStore}}>
+      <SearchContext.Provider value={{ ...stubContext, store: stubStore }}>
         <SearchList searchQuery="Some location" />
       </SearchContext.Provider>
     )
@@ -36,7 +35,7 @@ describe('SearchList', () => {
     let emptyData = { searchResults: [] }
 
     const wrapper = mount(
-      <SearchContext.Provider value={{...stubContext, store: emptyData}}>
+      <SearchContext.Provider value={{ ...stubContext, store: emptyData }}>
         <SearchList searchQuery="Some location" />
       </SearchContext.Provider>
     )
