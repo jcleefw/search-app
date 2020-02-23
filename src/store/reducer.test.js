@@ -7,6 +7,7 @@ describe('reducer', () => {
       searchResults: [1, 2, 3],
       searchErrors: '',
       emptyResults: false,
+      sortOrder: 'desc',
     }
 
     const action = {

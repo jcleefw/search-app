@@ -1,4 +1,5 @@
 import React from 'react'
+import RatingIcon from './RatingIcon'
 import { uid } from 'react-uid'
 
 const ICON_ENUM = {
@@ -18,10 +19,6 @@ const renderIconComponent = (floorValue, ratingType) => {
       ratingType={ratingType}
     />
   ))
-}
-
-const RatingIcon = ({ iconName, ratingType }) => {
-  return <i className={`material-icons ratings ${ratingType}`}>{iconName}</i>
 }
 
 const Ratings = ({ rating }) => {

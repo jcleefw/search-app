@@ -1,7 +1,7 @@
 import React from 'react'
-import SearchItem from '.'
+import SearchItem from '..'
 import { mount } from 'enzyme'
-import data from '../../../server/data.json'
+import data from '../../../../server/data.json'
 
 describe('SearchItem', () => {
   it('renders the SearchItem with summary', () => {
