@@ -10,7 +10,7 @@ import SearchContext from './SearchContext'
 
 import './search-page-styles.scss'
 
-const EmptyList = () => {
+export const EmptyList = () => {
   return (
     <div>
       I am Empty
@@ -25,7 +25,7 @@ const searchFunction = (query, dispatch) => {
   else return fetchData('/search_results', dispatch, 'SET_SEARCH_RESULTS')
 }
 
-const SearchPage = () => {
+export const SearchPage = () => {
   const { store } = useContext(SearchContext)
 
   if (store.searchErrors.length > 0) {
