@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
+import SearchContext from '../SearchContainer/SearchContext'
 
-const ResetButton = ({ searchContext }) => {
-  const { dispatch } = useContext(searchContext)
+const ResetButton = () => {
+  const { dispatch } = useContext(SearchContext)
   return (
     <span
       className="resetForm"

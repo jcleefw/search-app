@@ -6,16 +6,15 @@ import ErrorPage from '../ErrorPage'
 import ResetButton from '../ResetButton'
 import initialState from '../../store/initialState'
 import reducer from '../../store/reducer'
+import SearchContext from './SearchContext'
 
 import './search-page-styles.scss'
 
-const SearchContext = React.createContext(null)
-
-const EmptyList = ({ searchContext }) => {
+const EmptyList = () => {
   return (
     <div>
       I am Empty
-      <ResetButton searchContext={SearchContext} />
+      <ResetButton />
     </div>
   )
 }
@@ -26,22 +25,17 @@ const searchFunction = (query, dispatch) => {
   else return fetchData('/search_results', dispatch, 'SET_SEARCH_RESULTS')
 }
 
-const SearchPage = ({ searchContext }) => {
-  const { store } = useContext(searchContext)
+const SearchPage = () => {
+  const { store } = useContext(SearchContext)
 
   if (store.searchErrors.length > 0) {
-    return <ErrorPage searchContext={SearchContext} />
+    return <ErrorPage />
   } else if (store.emptyResults) {
     return <EmptyList />
   } else if (!store.emptyResults && store.searchResults.length > 0) {
-    return <SearchList searchContext={SearchContext} searchQuery="sydney" />
+    return <SearchList searchQuery="sydney" />
   } else {
-    return (
-      <SearchForm
-        searchContext={SearchContext}
-        searchFunction={searchFunction}
-      />
-    )
+    return <SearchForm searchFunction={searchFunction} />
   }
 }
 
@@ -50,7 +44,7 @@ const SearchContainer = () => {
 
   return (
     <SearchContext.Provider value={{ store, dispatch }}>
-      <SearchPage searchContext={SearchContext} />
+      <SearchPage />
     </SearchContext.Provider>
   )
 }

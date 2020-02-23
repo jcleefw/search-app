@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
+import SearchContext from './SearchContext'
 
-const SortSelect = ({ searchContext }) => {
-  const { dispatch } = useContext(searchContext)
+const SortSelect = () => {
+  const { dispatch } = useContext(SearchContext)
   return (
     <form id="sortBy">
       <select

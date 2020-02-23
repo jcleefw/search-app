@@ -4,9 +4,10 @@ import ResetButton from '../ResetButton'
 import './search-page-styles.scss'
 import SortSelect from './SortSelect'
 import { sortByPrice } from '../../utils/tools'
+import SearchContext from './SearchContext'
 
-const SearchList = ({ searchContext, searchQuery }) => {
-  const { store } = useContext(searchContext)
+const SearchList = ({ searchQuery }) => {
+  const { store } = useContext(SearchContext)
   const isEmptyList = store.searchResults.length > 0 ? false : true
   const sortSearchResult = [...store.searchResults].sort(
     sortByPrice(store.sortOrder)
@@ -19,9 +20,9 @@ const SearchList = ({ searchContext, searchQuery }) => {
           <span className="resultsLength">{store.searchResults.length}</span>{' '}
           hotels in
           <span className="searchQuery"> {searchQuery}</span>
-          <ResetButton searchContext={searchContext} />
+          <ResetButton />
         </div>
-        {!isEmptyList && <SortSelect searchContext={searchContext} />}
+        {!isEmptyList && <SortSelect />}
       </div>
 
       {!isEmptyList &&
