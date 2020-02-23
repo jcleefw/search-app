@@ -115,3 +115,11 @@
     }
   }
 }
+
+i.ratings {
+  color: $yellow;
+
+  &.half_self {
+    transform: rotate(180deg);
+  }
+}

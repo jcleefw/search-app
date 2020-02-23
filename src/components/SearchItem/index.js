@@ -22,7 +22,7 @@ const renderItemDetails = (propertyDetails, offerName, cancellationType) => {
           <h4 className="propertyName">{propertyDetails.title}</h4>
           <ItemRatings rating={propertyDetails.rating} />
         </div>
-        
+
         <p className="propertyAddress">{propertyDetails.address.join()}</p>
         <p className="propertyType">
           <a href="#">{offerName}</a>
