@@ -1,8 +1,8 @@
 import * as Api from './api'
+const reducerMock = jest.mock('../store/reducer')
 
 describe('api', () => {
-  const successFn = jest.fn()
-  const errorFn = jest.fn()
+  const reducer = jest.fn()
 
   let mockData = {
     results: ['hello', 'world'],
@@ -14,9 +14,14 @@ describe('api', () => {
     jest.clearAllMocks()
   })
 
-  it('fetchData successfully', async () => {
+  it('fetchData successfully with more than 1 results returned', async () => {
     mockData = {
       results: ['hello', 'world'],
+    }
+    const expectedResults = {
+      emptyResults: false,
+      searchResults: mockData.results,
+      type: 'dispatchType',
     }
 
     mockFetch = jest.spyOn(global, 'fetch').mockImplementation(() =>
@@ -26,27 +31,46 @@ describe('api', () => {
       })
     )
 
-    await Api.fetchData('/blach', successFn, errorFn)
+    await Api.fetchData('/blach', reducer, 'dispatchType')
     expect(mockFetch).toHaveBeenCalledTimes(1)
-    expect(successFn).toHaveBeenLastCalledWith(mockData)
-    expect(errorFn).toHaveBeenCalledTimes(0)
+    expect(reducer).toHaveBeenLastCalledWith(expectedResults)
+  })
+
+  it('fetchData successfully with no results returned', async () => {
+    mockData = {
+      results: [],
+    }
+    const expectedResults = {
+      emptyResults: true,
+      searchResults: [],
+      type: 'dispatchType',
+    }
+
+    mockFetch = jest.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => mockData,
+      })
+    )
+
+    await Api.fetchData('/blach', reducer, 'dispatchType')
+    expect(mockFetch).toHaveBeenCalledTimes(1)
+    expect(reducer).toHaveBeenLastCalledWith(expectedResults)
   })
 
   it('fetchData failed', async () => {
     let mockData = {
-      status: 404,
-      statusText: 'Not Found',
+      message: 'not found',
     }
-    mockFetch = jest.spyOn(global, 'fetch').mockImplementation(() =>
-      Promise.resolve({
-        ok: false,
-        ...mockData,
-      })
-    )
+    let expectedResults = {
+      searchErrors: 'not found',
+      type: 'SET_SEARCH_ERRORS',
+    }
 
-    let data = await Api.fetchData('/blach', successFn, errorFn)
+    mockFetch = jest.spyOn(global, 'fetch').mockRejectedValue(mockData)
+
+    let data = await Api.fetchData('/blach', reducer)
     expect(mockFetch).toHaveBeenCalledTimes(1)
-    expect(errorFn).toHaveBeenLastCalledWith({ err: mockData })
-    expect(successFn).toHaveBeenCalledTimes(0)
+    expect(reducer).toHaveBeenLastCalledWith(expectedResults)
   })
 })

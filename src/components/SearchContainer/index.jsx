@@ -1,64 +1,51 @@
-import React, { useState, useRef } from 'react'
+import React, { useReducer, useContext } from 'react'
 import { fetchData } from '../../utils/api'
 import SearchList from './SearchList'
 import SearchForm from './SearchForm'
 import ErrorPage from '../ErrorPage'
+import ResetButton from '../ResetButton'
+import initialState from '../../store/initialState'
+import reducer from '../../store/reducer'
+import SearchContext from './SearchContext'
 
 import './search-page-styles.scss'
 
-const renderSearchPage = props => {
-  let {
-    searchResults,
-    hasErrors,
-    setSearchResults,
-    setErrors,
-    searchInputEl,
-  } = props
-
-  if (hasErrors.err) {
-    return <ErrorPage errors={hasErrors.err} />
-  } else if (searchResults && searchResults.results) {
-    return (
-      <SearchList
-        searchResults={searchResults.results}
-        searchQuery={searchInputEl.current.value}
-        setSearchResults={setSearchResults}
-      />
-    )
-  } else
-    return (
-      <SearchForm
-        setSearchResults={setSearchResults}
-        setErrors={setErrors}
-        searchInputEl={searchInputEl}
-        searchFunction={searchFunction}
-      />
-    )
+export const EmptyList = () => {
+  return (
+    <div>
+      I am Empty
+      <ResetButton />
+    </div>
+  )
 }
 
-const searchFunction = (query, setSearchResults, setErrors) => {
-  if (query.toLowerCase() !== 'sydney') {
-    setSearchResults({ results: [] })
+const searchFunction = (query, dispatch) => {
+  if (query.toLowerCase() !== 'sydney')
+    return dispatch({ type: 'SET_SEARCH_RESULTS', emptyResults: true })
+  else return fetchData('/search_results', dispatch, 'SET_SEARCH_RESULTS')
+}
+
+export const SearchPage = () => {
+  const { store } = useContext(SearchContext)
+
+  if (store.searchErrors.length > 0) {
+    return <ErrorPage />
+  } else if (store.emptyResults) {
+    return <EmptyList />
+  } else if (!store.emptyResults && store.searchResults.length > 0) {
+    return <SearchList searchQuery="sydney" />
   } else {
-    fetchData('/search_results', setSearchResults, setErrors)
+    return <SearchForm searchFunction={searchFunction} />
   }
 }
 
 const SearchContainer = () => {
-  const [searchResults, setSearchResults] = useState({})
-  const [hasErrors, setErrors] = useState({})
-  const searchInputEl = useRef()
+  const [store, dispatch] = useReducer(reducer, initialState)
 
   return (
-    <div className="container searchContainer">
-      {renderSearchPage({
-        searchResults,
-        hasErrors,
-        setSearchResults,
-        setErrors,
-        searchInputEl,
-      })}
-    </div>
+    <SearchContext.Provider value={{ store, dispatch }}>
+      <SearchPage />
+    </SearchContext.Provider>
   )
 }
 

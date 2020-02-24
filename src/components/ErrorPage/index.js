@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ResetButton from '../ResetButton'
+import SearchContext from '../SearchContainer/SearchContext'
 
-const ErrorPage = ({ errors }) => {
+const ErrorPage = () => {
+  const { store } = useContext(SearchContext)
   return (
     <div>
       <h2>Opps there's an Error</h2>
-      <p>{errors.err}</p>
+      <p>{store.searchErrors}</p>
+
+      <ResetButton />
     </div>
   )
 }

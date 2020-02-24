@@ -1,4 +1,6 @@
 import React from 'react'
+import ItemRatings from './ItemRatings'
+
 import './search-item.scss'
 
 const renderItemImage = (imgDetails, promotionTitle) => {
@@ -16,7 +18,11 @@ const renderItemDetails = (propertyDetails, offerName, cancellationType) => {
   return (
     <div className="propertyDetails">
       <div className="propertyDetailsStatics">
-        <h4 className="propertyName">{propertyDetails.title}</h4>
+        <div className="itemHeader">
+          <h4 className="propertyName">{propertyDetails.title}</h4>
+          <ItemRatings rating={propertyDetails.rating} />
+        </div>
+
         <p className="propertyAddress">{propertyDetails.address.join()}</p>
         <p className="propertyType">
           <a href="#">{offerName}</a>

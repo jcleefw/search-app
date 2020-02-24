@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import SearchContext from './SearchContext'
 
-const SearchForm = props => {
-  const { setSearchResults, setErrors, searchInputEl, searchFunction } = props
+const searchInputRef = React.createRef()
+
+const SearchForm = ({ searchFunction }) => {
+  const { dispatch } = useContext(SearchContext)
   return (
-    <div className="formField">
-      <form id="searchForm">
-        <input ref={searchInputEl} id="searchInput" />
-      </form>
-      <button
-        className="button"
-        onClick={() => {
-          const query = searchInputEl.current.value
-          return searchFunction(query, setSearchResults, setErrors)
-        }}
-      >
-        Search
-      </button>
+    <div className="container searchContainer">
+      <div className="formField">
+        <form id="searchForm">
+          <input ref={searchInputRef} type="text" id="searchInput" />
+        </form>
+        <button
+          className="button"
+          onClick={() => {
+            const query = searchInputRef.current.value
+            return searchFunction(query, dispatch)
+          }}
+        >
+          Search
+        </button>
+      </div>
     </div>
   )
 }
