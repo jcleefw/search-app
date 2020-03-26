@@ -3,7 +3,11 @@
   display: grid;
   align-items: center;
 
+
   .headerLogo {
-    height: 50px;
+     font-size: 32px;
+     text-transform: uppercase;
+     font-weight: bold;
+     color: #d10000;
   }
 }
